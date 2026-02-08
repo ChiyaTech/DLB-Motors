@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DLB MOTORS | Performance & Service Studio",
+  title: "DLB MOTORS | Performance & Service Workshop",
   description: "Jaipur's premier multi-car service garage since 2011.",
 };
 
