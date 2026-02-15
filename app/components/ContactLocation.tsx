@@ -1,15 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
-import { FiPhone, FiMapPin, FiClock, FiStar, FiExternalLink } from "react-icons/fi";
+import { FiPhone, FiMapPin, FiClock, FiStar, FiExternalLink, FiMail } from "react-icons/fi";
 
 export default function ContactLocation() {
-  // REAL Google Maps embed (always resolves to correct pin)
-  const mapEmbedUrl =
-    "https://www.google.com/maps?q=DLB%20Motors%20Sirsi%20Road%20Jaipur&output=embed";
-
-  // REAL navigation link (opens in Google Maps app or browser)
-  const mapDirectUrl =
-    "https://www.google.com/maps/search/?api=1&query=DLB+Motors+Sirsi+Road+Jaipur";
+  const mapEmbedUrl = "https://www.google.com/maps?q=DLB%20Motors%20Sirsi%20Road%20Jaipur&output=embed";
+  const mapDirectUrl = "https://www.google.com/maps/search/?api=1&query=DLB+Motors+Sirsi+Road+Jaipur";
 
   return (
     <section
@@ -44,7 +39,7 @@ export default function ContactLocation() {
               <ContactItem
                 icon={<FiMapPin />}
                 title="Address"
-                detail="House no 7, 2 Gali, Sirsi Rd, Teeja Nagar, Panchyawala, Jaipur, Rajasthan 302034"
+                detail="House no 7, Gali no. 2, Sirsi Rd, Teeja Nagar, Panchyawala, Jaipur, Rajasthan 302034"
               />
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -53,10 +48,25 @@ export default function ContactLocation() {
                   title="Enquiry & Service"
                   detail="+91 99836 13302"
                 />
+                {/* Email added here for clean grid look */}
+                <ContactItem
+                  icon={<FiMail />}
+                  title="Official Email"
+                  detail="Blsharma1977@gmail.com"
+                  isEmail={true}
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <ContactItem
                   icon={<FiPhone />}
                   title="Pick-up & Drop"
                   detail="+91 978421 2903"
+                />
+                <ContactItem
+                  icon={<FiStar className="text-yellow-500" />}
+                  title="Google Rating"
+                  detail="4.8 Stars (89+ Reviews)"
                 />
               </div>
 
@@ -65,11 +75,6 @@ export default function ContactLocation() {
                   icon={<FiClock />}
                   title="Business Hours"
                   detail="OPEN ALL DAY: 9:00 AM - 8:00 PM"
-                />
-                <ContactItem
-                  icon={<FiStar className="text-yellow-500" />}
-                  title="Google Rating"
-                  detail="4.8 Stars (89+ Reviews)"
                 />
               </div>
 
@@ -116,10 +121,12 @@ const ContactItem = ({
   icon,
   title,
   detail,
+  isEmail,
 }: {
   icon: any;
   title: string;
   detail: string;
+  isEmail?: boolean;
 }) => (
   <div className="flex items-start gap-4 group">
     <div className="mt-1 text-xl text-dlb-accent group-hover:scale-110 transition-transform">
@@ -129,9 +136,18 @@ const ContactItem = ({
       <h4 className="text-zinc-500 font-mono text-[8px] md:text-[9px] tracking-[0.2em] uppercase mb-1">
         {title}
       </h4>
-      <p className="text-white text-sm md:text-base font-bold italic leading-tight">
-        {detail}
-      </p>
+      {isEmail ? (
+        <a 
+          href={`mailto:${detail}`} 
+          className="text-white text-sm md:text-base font-bold italic leading-tight hover:text-dlb-accent transition-colors"
+        >
+          {detail}
+        </a>
+      ) : (
+        <p className="text-white text-sm md:text-base font-bold italic leading-tight">
+          {detail}
+        </p>
+      )}
     </div>
   </div>
 );

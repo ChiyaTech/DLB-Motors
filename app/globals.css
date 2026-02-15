@@ -1,16 +1,21 @@
-@import "tailwindcss";
-
-@theme {
-  --color-dlb-black: #0a0a0a;
-  --color-dlb-silver: #c0c0c0;
-  --color-dlb-accent: #3b82f6;
-  
-  --background-image-metallic-gradient: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
+/* Mobile Overflow & Layout Safety */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
 }
 
-:root {
-  background: var(--color-dlb-black);
-  color: white;
+/* Fix for any 100vw or absolute elements */
+* {
+  max-width: 100%;
+}
+
+/* Prevent images, videos, svg, canvas from breaking layout */
+img, video, iframe, canvas, svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* Smooth Scroll Logic */
@@ -18,20 +23,13 @@ html {
   scroll-behavior: smooth !important;
 }
 
-/* Mobile Horizontal Scroll Fix */
-body {
+/* Prevent tailwind containers from overflowing */
+.container, section, main, header, footer {
   max-width: 100vw;
   overflow-x: hidden;
 }
 
-/* Custom Scrollbar (Optional but looks Pro) */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #0a0a0a;
-}
-::-webkit-scrollbar-thumb {
-  background: #3b82f6;
-  border-radius: 10px;
+/* iOS & Mobile Safari Fix */
+body {
+  overscroll-behavior-x: none;
 }
